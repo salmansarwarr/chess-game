@@ -10,7 +10,9 @@ export default function Hero() {
 
       {/* Glass Container */}
       <div className="hero-content">
+
         <div className="hero-glass">
+
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-8">
@@ -53,11 +55,11 @@ export default function Hero() {
 
             {/* Right Content */}
             <div className="hero-image-container">
-              <img
+              {/* <img
                 className="hero-image"
                 src="https://i.pinimg.com/736x/a1/89/46/a18946aaa0391c46c29b4a6a49fa532f.jpg"
                 alt="Chess"
-              />
+              /> */}
             </div>
           </div>
         </div>

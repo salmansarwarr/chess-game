@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const menuItems = [
-    { name: "Play", isButton: true },
-    { name: "New Chess", href: "/" },
-    { name: "Leaderboard", href: "#" },
-    { name: "Community", href: "#" },
+    // { name: "Play", isButton: true },
+    { name: "Home", href: "/home" },
+    { name: "Create Game", href: "/createGame" },
+ 
+    { name: "Start Game", href: "/" },
 ];
 
 export default function Navbar() {
@@ -18,7 +19,7 @@ export default function Navbar() {
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                <Link to="/" className="navbar-logo">
+                <Link to="/home" className="navbar-logo">
                     DeChess
                 </Link>
 

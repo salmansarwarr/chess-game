@@ -12,6 +12,7 @@ import JoinGame from "./onboard/joingame";
 import ChessGame from "./chess/ui/chessgame";
 import Home from "./Pages/Home";
 import Navbar from "./Elements/Navbar";
+import ChessGameDashboard from "./Pages/ChessGameDashboard";
 /*
  *  Frontend flow:
  *
@@ -67,6 +68,9 @@ function App() {
           </Route> */}
           <Route path="/home" exact>
             <Home />
+          </Route>
+          <Route path="/createGame" exact>
+            <ChessGameDashboard />
           </Route>
           <Route path="/" exact>
             <Onboard setUserName={setUserName} />

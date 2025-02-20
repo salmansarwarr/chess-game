@@ -1,0 +1,47 @@
+/* Optional custom styles to enhance Bootstrap */
+.card {
+    transition: transform 0.2s ease-in-out;
+    border: none;
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.modal-content {
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.display-4 {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.bg-gradient {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 1) 0%, rgba(249, 249, 249, 1) 100%);
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.card-title {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.text-muted {
+    color: #7f8c8d !important;
+}
