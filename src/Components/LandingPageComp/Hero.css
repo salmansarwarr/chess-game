@@ -1,0 +1,123 @@
+.hero-container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #4c1d95, #000, #9d174d);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-orb {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+    filter: blur(3xl);
+    opacity: 0.3;
+    animation: blob 10s infinite;
+}
+
+.hero-orb-purple {
+    top: 0;
+    left: 0;
+    background: #9333ea;
+}
+
+.hero-orb-pink {
+    top: 0;
+    right: 0;
+    background: #ec4899;
+    animation-delay: 2s;
+}
+
+.hero-content {
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+    padding: 5rem 1.5rem;
+}
+
+.hero-glass {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    line-height: 1.2;
+}
+
+.hero-text {
+    color: #d1d5db;
+    font-size: 1.125rem;
+    max-width: 32rem;
+}
+
+.hero-btn {
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hero-btn-primary {
+    background: linear-gradient(to right, #9333ea, #ec4899);
+    color: white;
+}
+
+.hero-btn-primary:hover {
+    opacity: 0.9;
+}
+
+.hero-btn-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.hero-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    color: #9ca3af;
+}
+
+.hero-stat-number {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: white;
+}
+
+.hero-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.hero-image {
+    width: 90%;
+    transform: rotate(12deg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 36px;
+    border: none;
+    outline: none;
+}
+
+@keyframes blob {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}

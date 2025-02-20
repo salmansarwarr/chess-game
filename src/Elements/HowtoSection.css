@@ -1,0 +1,179 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Section Styling */
+.howto-section {
+    position: relative;
+    padding: 80px 20px;
+    background: linear-gradient(to bottom, black, #4b0082);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+/* Background Elements */
+.background-elements {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.purple-blur,
+.pink-blur {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+.purple-blur {
+    top: -100px;
+    right: -100px;
+    background: rgba(128, 0, 128, 0.2);
+}
+
+.pink-blur {
+    bottom: -100px;
+    left: -100px;
+    background: rgba(255, 20, 147, 0.2);
+}
+
+/* Floating Trophy Icons */
+.floating-icon {
+    position: absolute;
+    opacity: 0.4;
+}
+
+.trophy-top {
+    top: 50px;
+    left: 20px;
+}
+
+.trophy-bottom {
+    bottom: 50px;
+    right: 20px;
+}
+
+.icon-purple {
+    color: rgba(128, 0, 128, 0.4);
+}
+
+.icon-pink {
+    color: rgba(255, 20, 147, 0.4);
+}
+
+/* Content Container */
+.howto-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Header */
+.howto-header {
+    margin-bottom: 40px;
+}
+
+.howto-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.howto-description {
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+/* Steps Grid */
+.howto-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Step Card */
+.step-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    width: 250px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.step-card:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-5px);
+}
+
+/* Step Icon */
+.step-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+
+/* Purple and Pink Icon Colors */
+.bg-purple {
+    background: linear-gradient(to right, #6a0dad, #4b0082);
+}
+
+.bg-pink {
+    background: linear-gradient(to right, #ff1493, #c71585);
+}
+
+.icon-white {
+    color: white;
+}
+
+/* Step Title */
+.step-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* Step Description */
+.step-description {
+    color: #d1d5db;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Footer Button */
+.howto-footer {
+    margin-top: 40px;
+}
+
+.connect-wallet-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    background: linear-gradient(to right, #6a0dad, #ff1493);
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.connect-wallet-btn:hover {
+    opacity: 0.8;
+}

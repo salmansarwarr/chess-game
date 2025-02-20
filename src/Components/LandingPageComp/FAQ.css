@@ -1,0 +1,91 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Smooth Transition */
+.faq-card,
+.faq-card h3,
+.faq-card p {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Background Gradient */
+.faq-container {
+    background: linear-gradient(to bottom right, #6b21a8, #000000, #be185d);
+    color: white;
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* FAQ Content Wrapper */
+.faq-content {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+/* FAQ Title */
+.faq-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* FAQ List */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* FAQ Card */
+.faq-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover & Active Effect */
+.faq-card:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* FAQ Question */
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Expand/Collapse Icon */
+.faq-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* FAQ Answer */
+.faq-answer {
+    color: #d1d5db;
+    font-size: 0.95rem;
+    text-align: left;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+/* Open State */
+.faq-card.open {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    padding-bottom: 20px;
+}
