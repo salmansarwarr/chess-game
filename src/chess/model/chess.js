@@ -1,12 +1,12 @@
 import Chess from 'chess.js'
 import ChessPiece from './chesspiece'
 import Square from './square'
+import { ethers } from 'ethers';
+
 // when indexing, remember: [y][x]. 
 /**
  * If the player color is black, make sure to invert the board.
  */
-
-
 
 
 class Game {
@@ -55,8 +55,7 @@ class Game {
         this.chessBoard = newBoard
     }
 
-    movePiece(pieceId, to, isMyMove) {
-
+    async movePiece(pieceId, to, isMyMove) {
         const to2D = isMyMove ? {
             105:0, 195:1, 285: 2, 375: 3, 465: 4, 555: 5, 645: 6, 735: 7
         } : {
@@ -106,13 +105,13 @@ class Game {
             })
 
 
-         console.log(moveAttempt)
-        // console.log(isPromotion)
-
-        if (moveAttempt === null) {
-            return "invalid move"
-        }
-
+            // console.log(isPromotion)
+            
+            if (moveAttempt === null) {
+                return "invalid move"
+            }
+            
+            console.log(moveAttempt)
 
         if (moveAttempt.flags === 'e') {
             const move = moveAttempt.to 
@@ -182,7 +181,22 @@ class Game {
         this.setBoard(currentBoard)
     }
 
-
+    isCaptureMove(pieceId, to) {
+        const board = this.getBoard();
+        
+        // Validate coordinates
+        if (!Array.isArray(to) || to.length !== 2 || 
+            to[0] < 0 || to[0] >= 8 ||
+            to[1] < 0 || to[1] >= 8) {
+            return false;
+        }
+        
+        const destinationPiece = board[to[1]][to[0]].getPiece();
+        if (!destinationPiece) return false;
+        
+        // Check if destination piece is opponent's
+        return destinationPiece.color !== pieceId[0];
+    }
 
     isCastle(moveAttempt) {
         /**
@@ -193,7 +207,7 @@ class Game {
          * returns if a player has castled, the final position of 
          * the rook (to_x, to_y), and the original position of the rook (x, y)
          * 
-         */
+ */
 
 
         const piece = moveAttempt.piece
@@ -272,6 +286,15 @@ class Game {
         }
     }
 
+    getPieceById(pieceId) {
+        const board = this.getBoard();
+        const coordinates = this.findPiece(board, pieceId);
+        if (coordinates) {
+            return board[coordinates[1]][coordinates[0]].getPiece();
+        }
+        return null;
+    }
+
     makeStartingBoard() {
         const backRank = ["rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"]
         var startingChessBoard = []
@@ -303,6 +326,14 @@ class Game {
             }
         }
         return startingChessBoard
+    }
+
+    isCheck() {
+        return this.chess.in_check();
+    }
+
+    isCheckmate() {
+        return this.chess.in_checkmate();
     }
 }
 

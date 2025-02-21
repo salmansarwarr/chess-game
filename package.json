@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "chess.js": "^0.10.3",
+    "ethers": "5.0.0",
     "konva": "6.0.0",
     "lucide-react": "^0.475.0",
     "react": "^16.13.1",
@@ -22,7 +23,7 @@
     "uuid": "^7.0.3"
   },
   "scripts": {
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
