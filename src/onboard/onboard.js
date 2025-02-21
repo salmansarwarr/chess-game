@@ -2,6 +2,9 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import uuid from "uuid/v4";
 import { ColorContext } from "../context/colorcontext";
+import { ethers } from 'ethers';
+import { CONTRACT_ADDRESS } from "../constants/consts";
+import abi from "../constants/abi.json";
 
 const socket = require("../connection/socket").socket;
 
@@ -128,8 +131,9 @@ const styles = `
 class CreateNewGame extends React.Component {
   state = {
     didGetUserName: false,
-    inputText: "",
-    gameId: "",
+    walletAddress: '',
+    isConnecting: false,
+    gameId: '',
   };
 
   constructor(props) {
@@ -137,19 +141,57 @@ class CreateNewGame extends React.Component {
     this.textArea = React.createRef();
   }
 
-  send = () => {
+  send = async () => {
+    if (!this.state.walletAddress) {
+        alert("Please connect your wallet first.");
+        return;
+    }
+      
     const newGameRoomId = uuid();
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+    
+    const entryFee = ethers.utils.parseEther("0.0001");
+
+    // Call the smart contract function with payable amount
+    const tx = await contract.createGame(newGameRoomId, { value: entryFee });
+    await tx.wait();
+
     this.setState({
-      gameId: newGameRoomId,
+        gameId: newGameRoomId,
     });
+
     socket.emit("createNewGame", newGameRoomId);
   };
 
-  typingUserName = () => {
-    const typedText = this.textArea.current.value;
-    this.setState({
-      inputText: typedText,
-    });
+  connectWallet = async () => {
+    if (!window.ethereum) {
+      alert("MetaMask not detected. Please install MetaMask.");
+      return;
+    }
+  
+    this.setState({ isConnecting: true });
+  
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum); // v5 syntax
+  
+      // Request access to the user's accounts
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+  
+      const signer = provider.getSigner(); // No need for `await`
+      const address = await signer.getAddress();
+  
+      this.setState({
+        walletAddress: address,
+        isConnecting: false,
+      });
+    } catch (error) {
+      console.error("Error connecting wallet:", error);
+      this.setState({ isConnecting: false });
+    }
   };
 
   render() {
@@ -169,22 +211,25 @@ class CreateNewGame extends React.Component {
             ) : (
               <>
                 <h1 className="title">Enter the Arena</h1>
-                <input
-                  ref={this.textArea}
-                  className="input-field"
-                  onInput={this.typingUserName}
-                  placeholder="Enter wallet address"
-                />
                 <button
                   className="button"
-                  disabled={!(this.state.inputText.length > 0)}
-                  onClick={() => {
-                    this.props.didRedirect();
-                    this.props.setUserName(this.state.inputText);
+                  disabled={this.state.isConnecting}
+                  onClick={this.connectWallet}
+                >
+                  {this.state.isConnecting ? 'Connecting...' : 
+                   this.state.walletAddress ? `Connected: ${this.state.walletAddress.slice(0, 6)}...` : 
+                   'Connect Wallet'}
+                </button>
+                <button
+                  className="button"
+                  disabled={!(this.state.walletAddress)}
+                  onClick={async () => {
+                    this.props.setUserName(this.state.walletAddress);
+                    await this.send();
                     this.setState({
                       didGetUserName: true,
                     });
-                    this.send();
+                    this.props.didRedirect();
                   }}
                 >
                   Create Game
